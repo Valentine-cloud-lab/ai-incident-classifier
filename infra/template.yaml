@@ -1,0 +1,638 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  AI-assisted incident classification (CLCS 605 Unit 6). EventBridge -> SQS -> Lambda
+  (TF-IDF model + Bedrock fallback) -> DynamoDB + SNS. Private subnets, no internet
+  egress, one customer-managed KMS key, SG-chained VPC endpoints, AWS Config rules.
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: aic
+    AllowedPattern: "^[a-z][a-z0-9-]{1,15}$"
+  BedrockModelId:
+    Type: String
+    Default: us.anthropic.claude-haiku-4-5-20251001-v1:0
+    Description: Cross-region inference profile ID used by the Converse call.
+  BedrockFoundationModelId:
+    Type: String
+    Default: anthropic.claude-haiku-4-5-20251001-v1:0
+    Description: Foundation model behind the profile. IAM needs both ARNs.
+  ConfidenceThreshold:
+    Type: String
+    Default: "0.60"
+  ModelSha256:
+    Type: String
+    Description: SHA-256 of model/model.json (scripts/deploy.sh fills this in).
+  S3PrefixListId:
+    Type: String
+    Description: Managed prefix list for S3 in this Region (deploy.sh looks it up).
+  DynamoDbPrefixListId:
+    Type: String
+    Description: Managed prefix list for DynamoDB in this Region (deploy.sh looks it up).
+  AlertEmail:
+    Type: String
+    Default: ""
+    Description: Optional email subscribed to the SecOps topic.
+  ReservedConcurrency:
+    Type: Number
+    Default: 0
+    Description: >
+      Set to 5 to cap concurrent invocations (and Bedrock spend) during alert storms.
+      Leave 0 on accounts with a 10-execution concurrency quota, where reservation fails.
+  EnableSecurityHubCspm:
+    Type: String
+    AllowedValues: ["true", "false"]
+    Default: "false"
+    Description: Set true only if Security Hub CSPM is not already enabled in this Region.
+
+Conditions:
+  HasEmail: !Not [!Equals [!Ref AlertEmail, ""]]
+  CreateCspm: !Equals [!Ref EnableSecurityHubCspm, "true"]
+  HasReservation: !Not [!Equals [!Ref ReservedConcurrency, "0"]]
+
+Resources:
+  # ------------------------------------------------------------------ KMS
+  # One CMK encrypts SQS, SNS, DynamoDB, S3, Lambda env vars, and CloudWatch Logs.
+  # Service principals get only the actions each service needs.
+  AppKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: !Sub "${ProjectName} data key"
+      EnableKeyRotation: true
+      PendingWindowInDays: 7
+      KeyPolicy:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AccountAdminViaIAM
+            Effect: Allow
+            Principal: { AWS: !Sub "arn:aws:iam::${AWS::AccountId}:root" }
+            Action: "kms:*"
+            Resource: "*"
+          - Sid: EventBridgeToEncryptedQueue
+            Effect: Allow
+            Principal: { Service: events.amazonaws.com }
+            Action: [kms:GenerateDataKey, kms:Decrypt]
+            Resource: "*"
+          - Sid: CloudWatchLogsEncryption
+            Effect: Allow
+            Principal: { Service: !Sub "logs.${AWS::Region}.amazonaws.com" }
+            Action: [kms:Encrypt, kms:Decrypt, kms:ReEncrypt*, kms:GenerateDataKey*, kms:Describe*]
+            Resource: "*"
+            Condition:
+              ArnLike:
+                kms:EncryptionContext:aws:logs:arn: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:*"
+          - Sid: CloudWatchAlarmsToEncryptedTopic
+            Effect: Allow
+            Principal: { Service: cloudwatch.amazonaws.com }
+            Action: [kms:GenerateDataKey*, kms:Decrypt]
+            Resource: "*"
+          - Sid: FlowLogDeliveryToS3
+            Effect: Allow
+            Principal: { Service: delivery.logs.amazonaws.com }
+            Action: [kms:Encrypt, kms:Decrypt, kms:ReEncrypt*, kms:GenerateDataKey*, kms:DescribeKey]
+            Resource: "*"
+
+  AppKeyAlias:
+    Type: AWS::KMS::Alias
+    Properties:
+      AliasName: !Sub "alias/${ProjectName}-data"
+      TargetKeyId: !Ref AppKey
+
+  # ------------------------------------------------------------------ S3
+  # Holds the model artifact (model/), audit exports (audit/), and flow logs.
+  ArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${ProjectName}-artifacts-${AWS::AccountId}-${AWS::Region}"
+      VersioningConfiguration: { Status: Enabled }
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+              KMSMasterKeyID: !GetAtt AppKey.Arn
+            BucketKeyEnabled: true
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules: [{ ObjectOwnership: BucketOwnerEnforced }]
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireFlowLogs
+            Status: Enabled
+            Prefix: flowlogs/
+            ExpirationInDays: 365
+
+  ArtifactBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ArtifactBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt ArtifactBucket.Arn
+              - !Sub "${ArtifactBucket.Arn}/*"
+            Condition: { Bool: { aws:SecureTransport: "false" } }
+          - Sid: FlowLogsWrite
+            Effect: Allow
+            Principal: { Service: delivery.logs.amazonaws.com }
+            Action: s3:PutObject
+            Resource: !Sub "${ArtifactBucket.Arn}/flowlogs/AWSLogs/${AWS::AccountId}/*"
+            Condition:
+              StringEquals: { aws:SourceAccount: !Ref AWS::AccountId }
+          - Sid: FlowLogsAclCheck
+            Effect: Allow
+            Principal: { Service: delivery.logs.amazonaws.com }
+            Action: [s3:GetBucketAcl, s3:ListBucket]
+            Resource: !GetAtt ArtifactBucket.Arn
+            Condition:
+              StringEquals: { aws:SourceAccount: !Ref AWS::AccountId }
+
+  # ------------------------------------------------------------------ Network
+  # Two private subnets, no internet gateway, no NAT. The function reaches AWS
+  # only through VPC endpoints, so exfiltration to the internet has no path.
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.40.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags: [{ Key: Name, Value: !Sub "${ProjectName}-vpc" }]
+
+  PrivateSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Vpc
+      CidrBlock: 10.40.1.0/24
+      AvailabilityZone: !Select [0, !GetAZs ""]
+      MapPublicIpOnLaunch: false
+      Tags: [{ Key: Name, Value: !Sub "${ProjectName}-private-a" }]
+
+  PrivateSubnetB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref Vpc
+      CidrBlock: 10.40.2.0/24
+      AvailabilityZone: !Select [1, !GetAZs ""]
+      MapPublicIpOnLaunch: false
+      Tags: [{ Key: Name, Value: !Sub "${ProjectName}-private-b" }]
+
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref Vpc
+      Tags: [{ Key: Name, Value: !Sub "${ProjectName}-private-rt" }]
+
+  SubnetARouteAssoc:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { SubnetId: !Ref PrivateSubnetA, RouteTableId: !Ref PrivateRouteTable }
+
+  SubnetBRouteAssoc:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: { SubnetId: !Ref PrivateSubnetB, RouteTableId: !Ref PrivateRouteTable }
+
+  VpcFlowLog:
+    Type: AWS::EC2::FlowLog
+    DependsOn: ArtifactBucketPolicy
+    Properties:
+      ResourceId: !Ref Vpc
+      ResourceType: VPC
+      TrafficType: ALL
+      LogDestinationType: s3
+      LogDestination: !Sub "${ArtifactBucket.Arn}/flowlogs/"
+
+  # SG chaining: the function's SG talks only to the endpoint SG on 443, and
+  # the endpoint SG accepts 443 only from the function's SG. No CIDR ranges.
+  LambdaSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Classifier Lambda ENIs. No inbound. Outbound 443 to endpoints only.
+      VpcId: !Ref Vpc
+      SecurityGroupEgress:
+        - Description: S3 gateway endpoint
+          IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          DestinationPrefixListId: !Ref S3PrefixListId
+        - Description: DynamoDB gateway endpoint
+          IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          DestinationPrefixListId: !Ref DynamoDbPrefixListId
+      Tags: [{ Key: Name, Value: !Sub "${ProjectName}-lambda-sg" }]
+
+  EndpointSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Interface endpoints. Inbound 443 from the Lambda SG only.
+      VpcId: !Ref Vpc
+      SecurityGroupEgress:
+        - Description: Deny-all placeholder (loopback) replaces the default allow-all egress
+          IpProtocol: "-1"
+          CidrIp: 127.0.0.1/32
+      Tags: [{ Key: Name, Value: !Sub "${ProjectName}-endpoint-sg" }]
+
+  LambdaToEndpointEgress:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId: !Ref LambdaSecurityGroup
+      Description: HTTPS to interface endpoints (SG chaining)
+      IpProtocol: tcp
+      FromPort: 443
+      ToPort: 443
+      DestinationSecurityGroupId: !Ref EndpointSecurityGroup
+
+  EndpointFromLambdaIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref EndpointSecurityGroup
+      Description: HTTPS from classifier Lambda SG only (SG chaining)
+      IpProtocol: tcp
+      FromPort: 443
+      ToPort: 443
+      SourceSecurityGroupId: !Ref LambdaSecurityGroup
+
+  # Endpoint policies add a second layer: even a stolen role credential used
+  # inside this VPC reaches only this project's resources.
+  S3GatewayEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Vpc
+      ServiceName: !Sub "com.amazonaws.${AWS::Region}.s3"
+      VpcEndpointType: Gateway
+      RouteTableIds: [!Ref PrivateRouteTable]
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: [s3:GetObject, s3:PutObject]
+            Resource: !Sub "${ArtifactBucket.Arn}/*"
+
+  DynamoDbGatewayEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Vpc
+      ServiceName: !Sub "com.amazonaws.${AWS::Region}.dynamodb"
+      VpcEndpointType: Gateway
+      RouteTableIds: [!Ref PrivateRouteTable]
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: dynamodb:PutItem
+            Resource: !GetAtt IncidentTable.Arn
+
+  BedrockRuntimeEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Vpc
+      ServiceName: !Sub "com.amazonaws.${AWS::Region}.bedrock-runtime"
+      VpcEndpointType: Interface
+      PrivateDnsEnabled: true
+      SubnetIds: [!Ref PrivateSubnetA, !Ref PrivateSubnetB]
+      SecurityGroupIds: [!Ref EndpointSecurityGroup]
+
+  SnsEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref Vpc
+      ServiceName: !Sub "com.amazonaws.${AWS::Region}.sns"
+      VpcEndpointType: Interface
+      PrivateDnsEnabled: true
+      SubnetIds: [!Ref PrivateSubnetA, !Ref PrivateSubnetB]
+      SecurityGroupIds: [!Ref EndpointSecurityGroup]
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: sns:Publish
+            Resource: [!Ref SecOpsTopic, !Ref NetOpsTopic, !Ref CloudOpsTopic]
+
+  # ------------------------------------------------------------------ Data stores and messaging
+  IncidentTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${ProjectName}-incidents"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions: [{ AttributeName: pk, AttributeType: S }]
+      KeySchema: [{ AttributeName: pk, KeyType: HASH }]
+      SSESpecification:
+        SSEEnabled: true
+        SSEType: KMS
+        KMSMasterKeyId: !Ref AppKey
+      PointInTimeRecoverySpecification: { PointInTimeRecoveryEnabled: true }
+      TimeToLiveSpecification: { AttributeName: expires_at, Enabled: true }
+
+  DeadLetterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub "${ProjectName}-incidents-dlq"
+      KmsMasterKeyId: !Ref AppKey
+      MessageRetentionPeriod: 1209600
+
+  IncidentQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub "${ProjectName}-incidents"
+      KmsMasterKeyId: !Ref AppKey
+      VisibilityTimeout: 180          # 6x the function timeout, per AWS guidance
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt DeadLetterQueue.Arn
+        maxReceiveCount: 3
+
+  IncidentQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      Queues: [!Ref IncidentQueue]
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowOnlyThisRule
+            Effect: Allow
+            Principal: { Service: events.amazonaws.com }
+            Action: sqs:SendMessage
+            Resource: !GetAtt IncidentQueue.Arn
+            Condition: { ArnEquals: { aws:SourceArn: !GetAtt IncidentRule.Arn } }
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "sqs:*"
+            Resource: !GetAtt IncidentQueue.Arn
+            Condition: { Bool: { aws:SecureTransport: "false" } }
+
+  SecOpsTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub "${ProjectName}-secops"
+      KmsMasterKeyId: !Ref AppKey
+
+  NetOpsTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub "${ProjectName}-netops"
+      KmsMasterKeyId: !Ref AppKey
+
+  CloudOpsTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub "${ProjectName}-cloudops"
+      KmsMasterKeyId: !Ref AppKey
+
+  SecOpsEmail:
+    Type: AWS::SNS::Subscription
+    Condition: HasEmail
+    Properties:
+      TopicArn: !Ref SecOpsTopic
+      Protocol: email
+      Endpoint: !Ref AlertEmail
+
+  # ------------------------------------------------------------------ Event intake
+  IncidentRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: !Sub "${ProjectName}-incident-intake"
+      Description: Security Hub, GuardDuty, Config NON_COMPLIANT, CloudWatch ALARM, and custom reports.
+      State: ENABLED
+      EventPattern:
+        $or:
+          - source: [aws.securityhub]
+            detail-type: [Security Hub Findings - Imported]
+          - source: [aws.guardduty]
+            detail-type: [GuardDuty Finding]
+          - source: [aws.config]
+            detail-type: [Config Rules Compliance Change]
+            detail:
+              newEvaluationResult:
+                complianceType: [NON_COMPLIANT]
+          - source: [aws.cloudwatch]
+            detail-type: [CloudWatch Alarm State Change]
+            detail:
+              state:
+                value: [ALARM]
+          - source: [custom.incident]
+            detail-type: [Incident Report]
+      Targets:
+        - Id: IncidentQueue
+          Arn: !GetAtt IncidentQueue.Arn
+
+  # ------------------------------------------------------------------ Compute
+  ClassifierLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${ProjectName}-classifier"
+      RetentionInDays: 365
+      KmsKeyId: !GetAtt AppKey.Arn
+
+  # Least privilege: every statement names a specific resource except the ENI
+  # actions, which AWS requires on "*" for VPC-attached functions. KMS use is
+  # limited to calls made through the named services (kms:ViaService).
+  ClassifierRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${ProjectName}-classifier-role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: lambda.amazonaws.com }
+            Action: sts:AssumeRole
+            Condition: { StringEquals: { aws:SourceAccount: !Ref AWS::AccountId } }
+      Policies:
+        - PolicyName: classifier-least-privilege
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Sid: WriteOwnLogs
+                Effect: Allow
+                Action: [logs:CreateLogStream, logs:PutLogEvents]
+                Resource: !Sub "${ClassifierLogGroup.Arn}:*"
+              - Sid: VpcEniManagement
+                Effect: Allow
+                Action:
+                  - ec2:CreateNetworkInterface
+                  - ec2:DescribeNetworkInterfaces
+                  - ec2:DescribeSubnets
+                  - ec2:DeleteNetworkInterface
+                  - ec2:AssignPrivateIpAddresses
+                  - ec2:UnassignPrivateIpAddresses
+                Resource: "*"
+              - Sid: ConsumeQueue
+                Effect: Allow
+                Action: [sqs:ReceiveMessage, sqs:DeleteMessage, sqs:GetQueueAttributes, sqs:ChangeMessageVisibility]
+                Resource: !GetAtt IncidentQueue.Arn
+              - Sid: ReadModelOnly
+                Effect: Allow
+                Action: s3:GetObject
+                Resource: !Sub "${ArtifactBucket.Arn}/model/*"
+              - Sid: WriteDecisions
+                Effect: Allow
+                Action: dynamodb:PutItem
+                Resource: !GetAtt IncidentTable.Arn
+              - Sid: NotifyTeams
+                Effect: Allow
+                Action: sns:Publish
+                Resource: [!Ref SecOpsTopic, !Ref NetOpsTopic, !Ref CloudOpsTopic]
+              - Sid: InvokeOneModel
+                Effect: Allow
+                Action: bedrock:InvokeModel
+                Resource:
+                  - !Sub "arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/${BedrockModelId}"
+                  - !Sub "arn:aws:bedrock:*::foundation-model/${BedrockFoundationModelId}"
+              - Sid: UseKeyThroughServicesOnly
+                Effect: Allow
+                Action: [kms:Decrypt, kms:GenerateDataKey]
+                Resource: !GetAtt AppKey.Arn
+                Condition:
+                  StringEquals:
+                    kms:ViaService:
+                      - !Sub "sqs.${AWS::Region}.amazonaws.com"
+                      - !Sub "s3.${AWS::Region}.amazonaws.com"
+                      - !Sub "dynamodb.${AWS::Region}.amazonaws.com"
+                      - !Sub "sns.${AWS::Region}.amazonaws.com"
+                      - !Sub "lambda.${AWS::Region}.amazonaws.com"
+
+  ClassifierFunction:
+    Type: AWS::Lambda::Function
+    DependsOn: ClassifierLogGroup
+    Properties:
+      FunctionName: !Sub "${ProjectName}-classifier"
+      Runtime: python3.12
+      Handler: handler.lambda_handler
+      Code: ../src          # aws cloudformation package uploads and rewrites this
+      Role: !GetAtt ClassifierRole.Arn
+      Timeout: 30
+      MemorySize: 256
+      ReservedConcurrentExecutions: !If [HasReservation, !Ref ReservedConcurrency, !Ref "AWS::NoValue"]
+      KmsKeyArn: !GetAtt AppKey.Arn
+      VpcConfig:
+        SubnetIds: [!Ref PrivateSubnetA, !Ref PrivateSubnetB]
+        SecurityGroupIds: [!Ref LambdaSecurityGroup]
+      Environment:
+        Variables:
+          MODEL_BUCKET: !Ref ArtifactBucket
+          MODEL_KEY: model/model.json
+          MODEL_SHA256: !Ref ModelSha256
+          TABLE_NAME: !Ref IncidentTable
+          BEDROCK_MODEL_ID: !Ref BedrockModelId
+          CONFIDENCE_THRESHOLD: !Ref ConfidenceThreshold
+          TOPIC_SECOPS: !Ref SecOpsTopic
+          TOPIC_NETOPS: !Ref NetOpsTopic
+          TOPIC_CLOUDOPS: !Ref CloudOpsTopic
+
+  QueueToFunction:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn: !GetAtt IncidentQueue.Arn
+      FunctionName: !Ref ClassifierFunction
+      BatchSize: 10
+      MaximumBatchingWindowInSeconds: 5
+      FunctionResponseTypes: [ReportBatchItemFailures]
+
+  DlqDepthAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${ProjectName}-dlq-not-empty"
+      AlarmDescription: Classification failures reached the dead-letter queue.
+      Namespace: AWS/SQS
+      MetricName: ApproximateNumberOfMessagesVisible
+      Dimensions: [{ Name: QueueName, Value: !GetAtt DeadLetterQueue.QueueName }]
+      Statistic: Maximum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 0
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: [!Ref SecOpsTopic]
+
+  # ------------------------------------------------------------------ AWS Config rules
+  # Requires an active configuration recorder (infra/config-recorder.yaml).
+  # Each rule maps to a control in the report's standards table.
+  RuleS3SslOnly:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-s3-bucket-ssl-requests-only"
+      Source: { Owner: AWS, SourceIdentifier: S3_BUCKET_SSL_REQUESTS_ONLY }
+  RuleS3Sse:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-s3-bucket-sse-enabled"
+      Source: { Owner: AWS, SourceIdentifier: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED }
+  RuleS3PublicBlock:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-s3-bucket-level-public-access-prohibited"
+      Source: { Owner: AWS, SourceIdentifier: S3_BUCKET_LEVEL_PUBLIC_ACCESS_PROHIBITED }
+  RuleKmsRotation:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-cmk-backing-key-rotation-enabled"
+      Source: { Owner: AWS, SourceIdentifier: CMK_BACKING_KEY_ROTATION_ENABLED }
+      MaximumExecutionFrequency: TwentyFour_Hours
+  RuleNoAdminPolicies:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-iam-policy-no-admin-access"
+      Source: { Owner: AWS, SourceIdentifier: IAM_POLICY_NO_STATEMENTS_WITH_ADMIN_ACCESS }
+  RuleLambdaInVpc:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-lambda-inside-vpc"
+      Source: { Owner: AWS, SourceIdentifier: LAMBDA_INSIDE_VPC }
+  RuleDefaultSgClosed:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-vpc-default-security-group-closed"
+      Source: { Owner: AWS, SourceIdentifier: VPC_DEFAULT_SECURITY_GROUP_CLOSED }
+  RuleFlowLogs:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-vpc-flow-logs-enabled"
+      Source: { Owner: AWS, SourceIdentifier: VPC_FLOW_LOGS_ENABLED }
+      MaximumExecutionFrequency: TwentyFour_Hours
+  RuleDynamoKms:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-dynamodb-table-encrypted-kms"
+      Source: { Owner: AWS, SourceIdentifier: DYNAMODB_TABLE_ENCRYPTED_KMS }
+  RuleSnsKms:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: !Sub "${ProjectName}-sns-encrypted-kms"
+      Source: { Owner: AWS, SourceIdentifier: SNS_ENCRYPTED_KMS }
+
+  # ------------------------------------------------------------------ Optional CSPM
+  SecurityHub:
+    Type: AWS::SecurityHub::Hub
+    Condition: CreateCspm
+    Properties:
+      EnableDefaultStandards: false
+  CisStandard:
+    Type: AWS::SecurityHub::Standard
+    Condition: CreateCspm
+    DependsOn: SecurityHub
+    Properties:
+      StandardsArn: !Sub "arn:aws:securityhub:${AWS::Region}::standards/cis-aws-foundations-benchmark/v/3.0.0"
+
+Outputs:
+  ArtifactBucketName: { Value: !Ref ArtifactBucket }
+  FunctionName: { Value: !Ref ClassifierFunction }
+  TableName: { Value: !Ref IncidentTable }
+  QueueUrl: { Value: !Ref IncidentQueue }
+  DeadLetterQueueUrl: { Value: !Ref DeadLetterQueue }
+  VpcId: { Value: !Ref Vpc }
+  LambdaSecurityGroupId: { Value: !Ref LambdaSecurityGroup }
+  EndpointSecurityGroupId: { Value: !Ref EndpointSecurityGroup }
+  KmsKeyArn: { Value: !GetAtt AppKey.Arn }
+  SecOpsTopicArn: { Value: !Ref SecOpsTopic }
+  NetOpsTopicArn: { Value: !Ref NetOpsTopic }
+  CloudOpsTopicArn: { Value: !Ref CloudOpsTopic }
