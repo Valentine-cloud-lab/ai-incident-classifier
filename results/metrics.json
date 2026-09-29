@@ -1,0 +1,164 @@
+{
+  "threshold": 0.6,
+  "model_version": "20260923030422",
+  "alerts_test.jsonl": {
+    "keyword_baseline": {
+      "n": 300,
+      "accuracy": 0.9233,
+      "macro_f1": 0.9208,
+      "auto_route_rate": 1.0,
+      "auto_route_precision": 0.9233,
+      "misroute_rate": 0.0767
+    },
+    "ai_no_threshold": {
+      "n": 300,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "auto_route_rate": 1.0,
+      "auto_route_precision": 1.0,
+      "misroute_rate": 0.0
+    },
+    "ai_with_threshold": {
+      "n": 300,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "auto_route_rate": 1.0,
+      "auto_route_precision": 1.0,
+      "misroute_rate": 0.0
+    },
+    "escalated_count": 0,
+    "escalated_top_guess_correct": 0,
+    "threshold_sweep": {
+      "0.4": {
+        "n": 300,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "auto_route_rate": 1.0,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      },
+      "0.5": {
+        "n": 300,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "auto_route_rate": 1.0,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      },
+      "0.6": {
+        "n": 300,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "auto_route_rate": 1.0,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      },
+      "0.7": {
+        "n": 300,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "auto_route_rate": 1.0,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      },
+      "0.8": {
+        "n": 300,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "auto_route_rate": 1.0,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      },
+      "0.9": {
+        "n": 300,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "auto_route_rate": 1.0,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      }
+    },
+    "latency_ms_p50": 0.0437,
+    "latency_ms_p99": 0.0776
+  },
+  "alerts_hard.jsonl": {
+    "keyword_baseline": {
+      "n": 150,
+      "accuracy": 0.44,
+      "macro_f1": 0.5657,
+      "auto_route_rate": 0.4533,
+      "auto_route_precision": 0.9706,
+      "misroute_rate": 0.0133
+    },
+    "ai_no_threshold": {
+      "n": 150,
+      "accuracy": 0.8333,
+      "macro_f1": 0.8362,
+      "auto_route_rate": 1.0,
+      "auto_route_precision": 0.8333,
+      "misroute_rate": 0.1667
+    },
+    "ai_with_threshold": {
+      "n": 150,
+      "accuracy": 0.4267,
+      "macro_f1": 0.5864,
+      "auto_route_rate": 0.4267,
+      "auto_route_precision": 1.0,
+      "misroute_rate": 0.0
+    },
+    "escalated_count": 86,
+    "escalated_top_guess_correct": 61,
+    "threshold_sweep": {
+      "0.4": {
+        "n": 150,
+        "accuracy": 0.7133,
+        "macro_f1": 0.8033,
+        "auto_route_rate": 0.7667,
+        "auto_route_precision": 0.9304,
+        "misroute_rate": 0.0533
+      },
+      "0.5": {
+        "n": 150,
+        "accuracy": 0.62,
+        "macro_f1": 0.7423,
+        "auto_route_rate": 0.66,
+        "auto_route_precision": 0.9394,
+        "misroute_rate": 0.04
+      },
+      "0.6": {
+        "n": 150,
+        "accuracy": 0.4267,
+        "macro_f1": 0.5864,
+        "auto_route_rate": 0.4267,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      },
+      "0.7": {
+        "n": 150,
+        "accuracy": 0.4133,
+        "macro_f1": 0.5721,
+        "auto_route_rate": 0.4133,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      },
+      "0.8": {
+        "n": 150,
+        "accuracy": 0.36,
+        "macro_f1": 0.5179,
+        "auto_route_rate": 0.36,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      },
+      "0.9": {
+        "n": 150,
+        "accuracy": 0.04,
+        "macro_f1": 0.0667,
+        "auto_route_rate": 0.04,
+        "auto_route_precision": 1.0,
+        "misroute_rate": 0.0
+      }
+    },
+    "latency_ms_p50": 0.0179,
+    "latency_ms_p99": 0.0456
+  }
+}

@@ -1,0 +1,39 @@
+test_known_alerts_classify_correctly (test_pipeline.TestClassifier.test_known_alerts_classify_correctly) ... ok
+test_normalize_replaces_identifiers (test_pipeline.TestClassifier.test_normalize_replaces_identifiers) ... ok
+test_probabilities_sum_to_one (test_pipeline.TestClassifier.test_probabilities_sum_to_one) ... ok
+test_tampered_model_rejected (test_pipeline.TestClassifier.test_tampered_model_rejected) ... ok
+test_bad_record_reported_as_partial_failure (test_pipeline.TestHandler.test_bad_record_reported_as_partial_failure) ... record m-bad failed: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+Traceback (most recent call last):
+  File "/home/claude/aic/src/handler.py", line 163, in lambda_handler
+    process(record)
+  File "/home/claude/aic/src/handler.py", line 116, in process
+    event = json.loads(record["body"])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+ok
+test_bedrock_failure_routes_to_manual_triage (test_pipeline.TestHandler.test_bedrock_failure_routes_to_manual_triage) ... Bedrock call failed: ThrottlingException
+ok
+test_config_event_text_extraction (test_pipeline.TestHandler.test_config_event_text_extraction) ... ok
+test_duplicate_delivery_publishes_once (test_pipeline.TestHandler.test_duplicate_delivery_publishes_once) ... ok
+test_high_confidence_routes_without_bedrock (test_pipeline.TestHandler.test_high_confidence_routes_without_bedrock) ... ok
+test_low_confidence_escalates_to_bedrock (test_pipeline.TestHandler.test_low_confidence_escalates_to_bedrock) ... ok
+test_remediation_comes_from_catalog (test_pipeline.TestHandler.test_remediation_comes_from_catalog) ... ok
+test_bedrock_error_fails_closed (test_pipeline.TestLLMFallback.test_bedrock_error_fails_closed) ... Bedrock call failed: ThrottlingException
+ok
+test_rejects_category_outside_enum (test_pipeline.TestLLMFallback.test_rejects_category_outside_enum) ... ok
+test_rejects_free_text_answer (test_pipeline.TestLLMFallback.test_rejects_free_text_answer) ... ok
+test_request_forces_tool_and_wraps_alert (test_pipeline.TestLLMFallback.test_request_forces_tool_and_wraps_alert) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.012s
+
+OK

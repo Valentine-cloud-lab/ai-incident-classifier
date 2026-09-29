@@ -1,0 +1,15 @@
+== alerts_test.jsonl (n=300) ==
+keyword_baseline     {'n': 300, 'accuracy': 0.9233, 'macro_f1': 0.9208, 'auto_route_rate': 1.0, 'auto_route_precision': 0.9233, 'misroute_rate': 0.0767}
+ai_no_threshold      {'n': 300, 'accuracy': 1.0, 'macro_f1': 1.0, 'auto_route_rate': 1.0, 'auto_route_precision': 1.0, 'misroute_rate': 0.0}
+ai_with_threshold    {'n': 300, 'accuracy': 1.0, 'macro_f1': 1.0, 'auto_route_rate': 1.0, 'auto_route_precision': 1.0, 'misroute_rate': 0.0}
+escalated=0 top_guess_correct=0
+latency p50=0.0437 ms p99=0.0776 ms
+misrouted examples (ai_with_threshold):
+
+== alerts_hard.jsonl (n=150) ==
+keyword_baseline     {'n': 150, 'accuracy': 0.44, 'macro_f1': 0.5657, 'auto_route_rate': 0.4533, 'auto_route_precision': 0.9706, 'misroute_rate': 0.0133}
+ai_no_threshold      {'n': 150, 'accuracy': 0.8333, 'macro_f1': 0.8362, 'auto_route_rate': 1.0, 'auto_route_precision': 0.8333, 'misroute_rate': 0.1667}
+ai_with_threshold    {'n': 150, 'accuracy': 0.4267, 'macro_f1': 0.5864, 'auto_route_rate': 0.4267, 'auto_route_precision': 1.0, 'misroute_rate': 0.0}
+escalated=86 top_guess_correct=61
+latency p50=0.0179 ms p99=0.0456 ms
+misrouted examples (ai_with_threshold):
