@@ -1,0 +1,150 @@
+{"text": "no flow logging turned on for the new prod VPC", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "hundreds of failed ssh logins from a single foreign address", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "someone logged in as the root user this morning, please check who", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "health checks failing behind the portal-alb", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "port 22 is open to the whole internet on the bastion", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "instance is connecting to tor nodes at night", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "health checks failing behind the portal-alb", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "MFA is missing for 5 console users in staging", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "antivirus flagged a trojan on the file server", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "someone shared a disk snapshot with the public", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "backups copied to a bucket without default encryption", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "private subnet now has a route out to the internet gateway", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "customer master key auto rotation got turned off", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "a login for ci-runner from Vietnam at 3am, user is on vacation", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "firewall rule on the web tier lets every source in on every port", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "instance is connecting to tor nodes at night", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "MFA is missing for 365 console users in staging", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "instance is connecting to tor nodes at night", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "disk almost full on the reporting database", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "weird DNS TXT queries leaving i-a73dddfe8becfe488, looks like tunneling", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "disk almost full on the reporting database", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "snapshots of the prod database are not encrypted", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "app servers pegged at 89% CPU since the deploy", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "app servers pegged at 92% CPU since the deploy", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "the order-processor function is timing out on most invocations", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "the developers group can do everything in the account, admin policy is attached", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "outbound traffic to a known botnet controller from i-3debe9e583abbf76b", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "box i-befc1f9fbad17ec50 is talking to a mining pool", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "app servers pegged at 86% CPU since the deploy", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "the developers group can do everything in the account, admin policy is attached", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "someone shared a disk snapshot with the public", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "someone logged in as the root user this morning, please check who", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "no flow logging turned on for the new dev VPC", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "disk almost full on the reporting database", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "firewall rule on the web tier lets every source in on every port", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "someone logged in as the root user this morning, please check who", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "instance is connecting to tor nodes at night", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "role session for LambdaExecRole came from an address we have never seen before", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "backups copied to a bucket without default encryption", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "box i-099b895b4e19ee815 is talking to a mining pool", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "a login for jsmith from Nigeria at 3am, user is on vacation", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "no flow logging turned on for the new prod VPC", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "windows jump host has remote desktop exposed publicly", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "a login for etl-user from Russia at 3am, user is on vacation", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "a login for svc-backup from Russia at 3am, user is on vacation", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "firewall rule on the web tier lets every source in on every port", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "private subnet now has a route out to the internet gateway", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "snapshots of the staging database are not encrypted", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "MFA is missing for 269 console users in dev", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "someone logged in as the root user this morning, please check who", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "customer master key auto rotation got turned off", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "customer master key auto rotation got turned off", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "hundreds of failed ssh logins from a single foreign address", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "a login for svc-backup from Romania at 3am, user is on vacation", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "MFA is missing for 228 console users in staging", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "weird DNS TXT queries leaving i-d84090a4aa6031274, looks like tunneling", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "firewall rule on the web tier lets every source in on every port", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "private subnet now has a route out to the internet gateway", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "windows jump host has remote desktop exposed publicly", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "anyone outside can reach the database on port 5432", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "a login for deploy-bot from Romania at 3am, user is on vacation", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "the etl-loader function is timing out on most invocations", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "customer master key auto rotation got turned off", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "outbound traffic to a known botnet controller from i-76c3538dbd497a6b0", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "private subnet now has a route out to the internet gateway", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "antivirus flagged a trojan on the file server", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "box i-a69f2873b28e89995 is talking to a mining pool", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "the order-processor function is timing out on most invocations", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "anyone outside can reach the database on port 5432", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "firewall rule on the web tier lets every source in on every port", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "the etl-loader function is timing out on most invocations", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "app servers pegged at 97% CPU since the deploy", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "disk almost full on the reporting database", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "snapshots of the dev database are not encrypted", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "box i-6eeac41d98b501403 is talking to a mining pool", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "box i-8e1ef13b5cc65d5d1 is talking to a mining pool", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "MFA is missing for 268 console users in prod", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "port 22 is open to the whole internet on the bastion", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "disk almost full on the reporting database", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "the developers group can do everything in the account, admin policy is attached", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "outbound traffic to a known botnet controller from i-f60c0aff39f12a964", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "MFA is missing for 179 console users in staging", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "anyone outside can reach the database on port 5432", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "weird DNS TXT queries leaving i-72c6b4f3bcb8a9a79, looks like tunneling", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "the bucket with customer invoices has public read on it", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "MFA is missing for 39 console users in prod", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "anyone outside can reach the database on port 5432", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "container keeps restarting, desired 4 running 1", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "someone logged in as the root user this morning, please check who", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "the developers group can do everything in the account, admin policy is attached", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "the developers group can do everything in the account, admin policy is attached", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "MFA is missing for 25 console users in dev", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "a login for etl-user from Brazil at 3am, user is on vacation", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "outbound traffic to a known botnet controller from i-84ab37c111fc79a6a", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "disk almost full on the reporting database", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "disk almost full on the reporting database", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "MFA is missing for 19 console users in staging", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "instance is connecting to tor nodes at night", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "outbound traffic to a known botnet controller from i-9a7f694ad8c632135", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "someone logged in as the root user this morning, please check who", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "outbound traffic to a known botnet controller from i-ca5219a21b223c598", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "the bucket with customer invoices has public read on it", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "the bucket with customer invoices has public read on it", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "port 22 is open to the whole internet on the bastion", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "port 22 is open to the whole internet on the bastion", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "someone shared a disk snapshot with the public", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "anyone outside can reach the database on port 5432", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "box i-28379dfb0e7b2a83d is talking to a mining pool", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "found social security numbers sitting in the log archive bucket", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "outbound traffic to a known botnet controller from i-36c7a6aeaf44b6a16", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "firewall rule on the web tier lets every source in on every port", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "the bucket with customer invoices has public read on it", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "snapshots of the prod database are not encrypted", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "instance is connecting to tor nodes at night", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "role session for LambdaExecRole came from an address we have never seen before", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "private subnet now has a route out to the internet gateway", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "the developers group can do everything in the account, admin policy is attached", "label": "IDENTITY_ACCESS", "source": "set_b"}
+{"text": "private subnet now has a route out to the internet gateway", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "health checks failing behind the portal-alb", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "antivirus flagged a trojan on the file server", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "customer master key auto rotation got turned off", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "health checks failing behind the portal-alb", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "the order-processor function is timing out on most invocations", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "private subnet now has a route out to the internet gateway", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "firewall rule on the web tier lets every source in on every port", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "port 22 is open to the whole internet on the bastion", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "instance is connecting to tor nodes at night", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "instance is connecting to tor nodes at night", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}
+{"text": "antivirus flagged a trojan on the file server", "label": "THREAT_DETECTION", "source": "set_b"}
+{"text": "port 22 is open to the whole internet on the bastion", "label": "NETWORK_EXPOSURE", "source": "set_b"}
+{"text": "snapshots of the prod database are not encrypted", "label": "DATA_PROTECTION", "source": "set_b"}
+{"text": "scaling group cannot add capacity, launches keep failing", "label": "COMPUTE_AVAILABILITY", "source": "set_b"}

@@ -1,0 +1,300 @@
+{"text": "GuardDuty finding: EC2 status check failed for instance i-8eaff807ea981823b Host runs the IAM token service. Severity LOW.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: RDS snapshot for reporting-replica is not encrypted at rest Found during network review. Severity CRITICAL. Account 606099961544 region us-west-2.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: EC2 instance i-7abf727055922a4a1 has a public IP and open RDP port 3389 Instance i-36a4f58fca002a73d also shows high CPU. Severity MEDIUM.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Credentials for jsmith used from anomalous geolocation Russia.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] EC2 status check failed for instance i-032ff0a2f9fbb9a5d in account 267084104283", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: Port scan from 119.125.52.186 against i-9ea9686f52757494a detected Instance role ReadOnlyAudit attached. Severity CRITICAL. Account 900037125603 region us-east-1.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "VPC peering connection routes allow full CIDR access between vpc-bc835ab2 and partner VPC", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: EBS volume vol-e7d5ec5ad5d6a49b3 is unencrypted. Severity HIGH.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (prod): CPUUtilization for i-5ec4e5326f99dafd4 above 91 percent for 15 minutes. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] S3 bucket hr-exports-prod is publicly readable through bucket ACL in account 503970625041", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "EC2 instance i-61092153fe6247cb9 has a public IP and open RDP port 3389 Group owned by IAM team", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: RDS snapshot for orders-db is not encrypted at rest.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security group sg-d76c0fe9 allows ingress from ::/0 on all ports", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: EBS volume vol-ce0903356ca7cf500 is unencrypted.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (staging): IAM user ci-runner has console access without MFA enabled. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: IAM policy VendorAccess grants full administrative privileges *:*.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Security Hub finding: Network ACL acl-834a0044 permits inbound SSH from any address Instance i-9e315ccc592e06951 also shows high CPU. Severity LOW. Account 910795862066 region us-west-2.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: Security group sg-b20c50c3 allows unrestricted ingress on port 445 from 0.0.0.0/0 Instance i-c53da8d08b9166110 also shows high CPU. Severity CRITICAL.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Port scan from 94.83.149.231 against i-a864181d635308531 detected.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: IAM policy LegacyOpsPolicy grants full administrative privileges *:*.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Unused credentials for etl-user older than 45 days remain active", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (staging): IAM user etl-user has inline policy attached directly instead of through a group. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (staging): Password policy does not require a minimum length of 14 characters Activity touched S3 bucket static-web-assets. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Security Hub finding: Network ACL acl-c3b68971 permits inbound SSH from any address. Severity LOW. Account 563557029252 region us-east-1.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Lambda function order-processor throttles exceeded threshold", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Reverse shell pattern detected on i-a50846ecb4f9d1a90 connecting to 27.64.233.212.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "[ALARM] Auto Scaling group batch-asg failed to launch instances: insufficient capacity Host runs the IAM token service in account 858749120217", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Credentials for jsmith used from anomalous geolocation Vietnam.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (prod): Trojan activity: instance i-2635ca765cc4dd135 contacted known malicious IP 21.200.187.98. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "VPC peering connection routes allow full CIDR access between vpc-2a8272f4 and partner VPC Instance i-3139ffa488abfb38d also shows high CPU", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Auto Scaling group worker-asg failed to launch instances: insufficient capacity. Severity HIGH. Account 241884912225 region eu-west-1.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Lambda function order-processor throttles exceeded threshold.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (prod): Backdoor behavior: i-6337a55eacec82d02 is performing denial of service outbound. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "[ALARM] EC2 instance i-9fd1b9c57988c7b26 has a public IP and open RDP port 3389 in account 415730489630", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: Backdoor behavior: i-3849ff26dae6a5d33 is performing denial of service outbound Instance role ProdDeployRole attached. Severity LOW.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (staging): Malware detected on EBS volume attached to i-c6779c1964e728c4b. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "[ALARM] ECS service search-api running task count below desired count in account 285941597057", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "CPUUtilization for i-ed22eeaf5d2e3d5e8 above 86 percent for 15 minutes", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "GuardDuty finding: Route table rtb-d361e9f0 sends 0.0.0.0/0 to an internet gateway from a private subnet. Severity HIGH.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Incident report (dev): EBS snapshot snap-fb93214ae7611a501 is shared publicly. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (dev): DNS data exfiltration pattern detected from i-7efe69b3023327a7c. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "RDS instance crm-mysql storage is not encrypted Found during network review", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Backdoor behavior: i-3157e469d8a5b141c is performing denial of service outbound", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: S3 bucket policy for acme-invoices does not deny non-TLS requests Found during network review. Severity CRITICAL.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: CPUUtilization for i-ba355ac6e8a575d31 above 94 percent for 15 minutes. Severity HIGH. Account 119444891328 region us-east-1.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (dev): KMS key alias/app-data automatic rotation is disabled. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: Instance i-4b15e97d3f66d96e8 querying domain cdn-sync.top associated with command and control. Severity CRITICAL. Account 130596483984 region us-east-1.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: S3 bucket policy for backup-archive-01 does not deny non-TLS requests.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: Instance i-e350186a985925e0a querying domain xmr.pool-miner.net associated with command and control Instance security group sg-14254667 allows port 443. Severity LOW. Account 485441934197 region us-west-2.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Subnet auto-assigns public IPv4 addresses in VPC vpc-e4ad76c3 Group owned by IAM team.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: DNS data exfiltration pattern detected from i-c099ffb78b084bcdb. Severity HIGH. Account 751573877621 region eu-west-1.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: S3 bucket acme-invoices does not enforce server-side encryption Found during network review. Severity HIGH.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (prod): Reverse shell pattern detected on i-021c81b97ae6e0532 connecting to 134.32.173.188 Instance role BreakGlassAdmin attached. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: Password policy does not require a minimum length of 14 characters. Severity LOW. Account 671290178020 region us-east-1.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Security Hub finding: ECS service notifier running task count below desired count. Severity LOW. Account 637953296783 region us-west-2.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Route table rtb-d9e0fb67 sends 0.0.0.0/0 to an internet gateway from a private subnet.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "[ALARM] Lambda function etl-loader error rate exceeded 5 percent Data volume encrypted with KMS in account 320476698005", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Disk usage on i-365d8bdbcba2403da root volume above 92 percent Host runs the IAM token service", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] Default security group of VPC vpc-785b821e allows inbound and outbound traffic in account 110308820197", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: CPUUtilization for i-1a72e838843bfabe4 above 87 percent for 15 minutes.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Unusual AssumeRole activity for role DataPipelineRole from a new ASN Activity touched S3 bucket static-web-assets.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Security Hub finding: VPC vpc-a7b327c1 flow logs are not enabled. Severity MEDIUM. Account 936631860253 region us-west-2.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Macie detected sensitive data (credit card numbers) in bucket clickstream-raw Found during network review. Severity MEDIUM. Account 669779132571 region us-west-2.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Unusual AssumeRole activity for role BreakGlassAdmin from a new ASN", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "IAM policy LegacyOpsPolicy grants full administrative privileges *:* Activity touched S3 bucket acme-invoices", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Default security group of VPC vpc-8b3a7b80 allows inbound and outbound traffic Instance i-2d3bf475fddf0c5fd also shows high CPU.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Access key AKIAMDBPWCZEND6AUG53 for user ci-runner has not been rotated in 91 days. Severity CRITICAL. Account 967385491003 region us-east-1.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (dev): IAM user deploy-bot has inline policy attached directly instead of through a group. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] Security group sg-f8c9cf1c allows ingress from ::/0 on all ports in account 662412529216", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: VPC vpc-964f674d flow logs are not enabled.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: DynamoDB table AuditTrail point-in-time recovery is disabled Found during network review. Severity CRITICAL. Account 615673376899 region eu-west-1.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Trojan activity: instance i-51018f2e715a86d32 contacted known malicious IP 20.178.104.60", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (prod): EBS volume vol-6f550c8dc87740c83 is unencrypted. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: IAM user ci-runner has console access without MFA enabled Activity touched S3 bucket clickstream-raw. Severity CRITICAL. Account 868545064681 region eu-west-1.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Security Hub finding: Credentials for svc-backup used from anomalous geolocation Brazil. Severity CRITICAL. Account 380276263126 region us-west-2.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (staging): VPC vpc-8d7b9c20 flow logs are not enabled. Reported by on-call engineer.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Network ACL acl-73e9e705 permits inbound SSH from any address", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "[ALARM] Backdoor behavior: i-2f9612bd9bbabae75 is performing denial of service outbound in account 549934952912", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Macie detected sensitive data (credit card numbers) in bucket hr-exports-prod", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: S3 bucket policy for acme-invoices does not deny non-TLS requests. Severity CRITICAL. Account 418285170555 region us-west-2.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Network ACL acl-cd76a0e2 permits inbound SSH from any address.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "RDS snapshot for orders-db is not encrypted at rest Found during network review", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: DynamoDB table Sessions point-in-time recovery is disabled.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: Macie detected sensitive data (credit card numbers) in bucket hr-exports-prod. Severity HIGH. Account 328297059390 region eu-west-1.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: IAM user deploy-bot has console access without MFA enabled. Severity LOW. Account 827879860403 region us-west-2.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "KMS key alias/app-data automatic rotation is disabled", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Trojan activity: instance i-fd055d1e1b91dd18a contacted known malicious IP 81.30.150.93 Instance security group sg-8009f5b8 allows port 443.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: KMS key alias/backup automatic rotation is disabled. Severity CRITICAL.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (staging): S3 bucket clickstream-raw does not enforce server-side encryption Found during network review. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Target group tg-api-8080 has 392 unhealthy hosts", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Root account used to call PutBucketPolicy from 211.101.245.88.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Unused credentials for svc-backup older than 45 days remain active", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "GuardDuty finding: Access key AKIA4GNVJWC225F6TZZX for user a.garcia has not been rotated in 91 days. Severity CRITICAL.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] EBS volume vol-74505033c08f7b232 is unencrypted in account 775173301364", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Subnet auto-assigns public IPv4 addresses in VPC vpc-1ff5521f. Severity MEDIUM.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Disk usage on i-994e0d4c6e6affbfe root volume above 98 percent. Severity MEDIUM. Account 589674202634 region us-east-1.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: EBS snapshot snap-31b59cac36e08be9a is shared publicly Found during network review. Severity LOW. Account 360117498157 region eu-west-1.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: EC2 instance i-1ee495a102d2c44e4 is communicating with a known cryptocurrency mining pool.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: EC2 instance i-1ec60db13066b14b3 has a public IP and open RDP port 3389. Severity CRITICAL.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Target group tg-api-8080 has 284 unhealthy hosts.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "GuardDuty finding: Unusual AssumeRole activity for role ReadOnlyAudit from a new ASN. Severity CRITICAL.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (dev): S3 bucket policy for backup-archive-01 does not deny non-TLS requests. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: Reverse shell pattern detected on i-26b9546717c7d1f76 connecting to 210.144.109.160. Severity HIGH. Account 758081494573 region us-east-1.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "DNS data exfiltration pattern detected from i-31f4a5c03a92c6613", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Root account used to call AttachUserPolicy from 108.58.182.197. Severity LOW.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Security Hub finding: Console login failures exceeded threshold for user deploy-bot. Severity LOW. Account 250924898279 region us-east-1.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (staging): Security group sg-7c59c950 allows unrestricted ingress on port 3389 from 0.0.0.0/0 Group owned by IAM team. Reported by on-call engineer.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: Trojan activity: instance i-49d34baaeb189803f contacted known malicious IP 35.4.213.196. Severity HIGH.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "EBS volume vol-5649644fe45d299ad is unencrypted Bucket is attached to instance profile role ProdDeployRole", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Security group sg-4cb3578d allows unrestricted ingress on port 445 from 0.0.0.0/0. Severity HIGH.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: S3 bucket policy for hr-exports-prod does not deny non-TLS requests Found during network review. Severity LOW. Account 908122154759 region eu-west-1.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Macie detected sensitive data (credit card numbers) in bucket clickstream-raw Bucket is attached to instance profile role BreakGlassAdmin. Severity MEDIUM.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "[ALARM] Instance i-68dd7b2896986b9a3 querying domain xmr.pool-miner.net associated with command and control in account 333658229357", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: CPUUtilization for i-d774746280d4102b7 above 92 percent for 15 minutes.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: Security group sg-69230b38 allows unrestricted ingress on port 3306 from 0.0.0.0/0. Severity CRITICAL. Account 106790168133 region us-west-2.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: RDS payroll-postgres free storage space below 10 percent. Severity LOW. Account 469202201010 region us-west-2.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: EC2 status check failed for instance i-378d7fb8166b42ad3. Severity CRITICAL. Account 533765010697 region us-west-2.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Target group tg-web-80 has 66 unhealthy hosts Instance sits behind security group sg-24d9e720", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] S3 bucket static-web-assets does not enforce server-side encryption in account 178234860760", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Password policy does not require a minimum length of 14 characters. Severity CRITICAL.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (prod): Brute force SSH attempts against i-de385da86ae442448 from 172.38.183.156. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: EC2 instance i-9a776529f41b1b242 has a public IP and open RDP port 3389. Severity CRITICAL.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Lambda function thumbnail-gen error rate exceeded 5 percent. Severity HIGH. Account 970438585822 region us-east-1.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (dev): Instance i-6f3d48feb01b2c674 querying domain update-check.cc associated with command and control. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (dev): RDS instance orders-db storage is not encrypted. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Console login failures exceeded threshold for user ci-runner. Severity LOW.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (prod): Console login failures exceeded threshold for user mbrown. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] Brute force SSH attempts against i-fad8d319dd479281f from 229.74.191.103 in account 940376069899", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: Network ACL acl-7b1e369e permits inbound SSH from any address. Severity LOW. Account 277542411744 region us-west-2.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Unusual AssumeRole activity for role ProdDeployRole from a new ASN.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] Tor exit node communication observed from i-6a3d96b19032dda64 in account 521716745411", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Default security group of VPC vpc-ba33a353 allows inbound and outbound traffic Instance i-d4b0b30d2f34a5540 also shows high CPU. Severity CRITICAL.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Network ACL acl-445d392f permits inbound SSH from any address Instance i-1c098e8fa981864db also shows high CPU", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Unused credentials for svc-backup older than 45 days remain active Call originated inside VPC vpc-3f91fc4b", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: RDS orders-db free storage space below 10 percent.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (staging): RDS snapshot for orders-db is not encrypted at rest. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (prod): VPC peering connection routes allow full CIDR access between vpc-4030e1f6 and partner VPC. Reported by on-call engineer.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: EBS snapshot snap-f4a65dcb11e74bdd5 is shared publicly. Severity CRITICAL.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Disk usage on i-9f791d8f01873f973 root volume above 89 percent. Severity MEDIUM.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Reverse shell pattern detected on i-ad07836e46021d38d connecting to 145.223.220.59", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (prod): EC2 status check failed for instance i-7e4352f9289827bb5 Instance sits behind security group sg-92f79c67. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: Route table rtb-6db10134 sends 0.0.0.0/0 to an internet gateway from a private subnet. Severity MEDIUM. Account 702792244517 region eu-west-1.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Password policy does not require a minimum length of 14 characters", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "GuardDuty finding: Reverse shell pattern detected on i-a70ddbbe704db51c5 connecting to 2.94.41.80. Severity CRITICAL.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "[ALARM] Tor exit node communication observed from i-31719cfdd8c91fd6a in account 415756178985", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (dev): RDS reporting-replica free storage space below 10 percent. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "GuardDuty finding: EC2 instance i-b343806b9f4e53353 is communicating with a known cryptocurrency mining pool. Severity LOW.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Auto Scaling group worker-asg failed to launch instances: insufficient capacity.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Network ACL acl-1f1d1a3c permits inbound SSH from any address Group owned by IAM team.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Root account used to call ListBuckets from 22.100.220.185.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "GuardDuty finding: S3 bucket acme-invoices does not enforce server-side encryption. Severity CRITICAL.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Reverse shell pattern detected on i-d80b8e392196b5ff1 connecting to 201.183.84.66. Severity MEDIUM.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: EBS snapshot snap-1f30be2fb6d752907 is shared publicly. Severity MEDIUM. Account 259065650287 region us-east-1.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Trojan activity: instance i-cd32b1588393073e3 contacted known malicious IP 46.241.169.155 Instance role DataPipelineRole attached. Severity HIGH.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: Route table rtb-2b7569fc sends 0.0.0.0/0 to an internet gateway from a private subnet. Severity LOW. Account 417122625379 region eu-west-1.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Incident report (prod): Load balancer portal-alb listener accepts HTTP without redirect to HTTPS. Reported by on-call engineer.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Backdoor behavior: i-f521162af9bd46815 is performing denial of service outbound", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: RDS instance reporting-replica storage is not encrypted. Severity MEDIUM.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Console login failures exceeded threshold for user ci-runner", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (staging): VPC vpc-ec8dd474 flow logs are not enabled. Reported by on-call engineer.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "[ALARM] Target group tg-api-8080 has 250 unhealthy hosts Instance sits behind security group sg-3f1c3048 in account 259501018250", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (staging): Port scan from 159.58.31.245 against i-39e7b973864887eb6 detected. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Instance i-b907287ff00f4a001 querying domain xmr.pool-miner.net associated with command and control", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Unused credentials for ci-runner older than 45 days remain active", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "S3 bucket hr-exports-prod is publicly readable through bucket ACL", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (dev): Lambda function auth-callback throttles exceeded threshold Data volume encrypted with KMS. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Trojan activity: instance i-7ac50fbfd8fe56731 contacted known malicious IP 97.217.132.191 Instance role ReadOnlyAudit attached.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: DynamoDB table Sessions point-in-time recovery is disabled.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Network ACL acl-3a8b49f2 permits inbound SSH from any address Instance i-19300eba002897748 also shows high CPU.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: Macie detected sensitive data (credit card numbers) in bucket static-web-assets Bucket is attached to instance profile role ProdDeployRole. Severity LOW.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "[ALARM] Disk usage on i-cce9dea4f31bd5e29 root volume above 95 percent in account 114979332496", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: Security group sg-6e94f280 allows ingress from ::/0 on all ports. Severity LOW. Account 804625408043 region eu-west-1.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "VPC peering connection routes allow full CIDR access between vpc-c98bb9ae and partner VPC", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Disk usage on i-6c4f2b9c92bec7ad2 root volume above 87 percent. Severity CRITICAL. Account 884938269312 region us-east-1.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "GuardDuty finding: RDS instance orders-db storage is not encrypted. Severity LOW.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "[ALARM] Console login failures exceeded threshold for user ci-runner in account 659212947040", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] EC2 status check failed for instance i-3a85a9994897dfe51 in account 652179272458", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: Console login failures exceeded threshold for user a.garcia. Severity MEDIUM. Account 450671874536 region us-east-1.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "GuardDuty finding: Target group tg-web-80 has 206 unhealthy hosts. Severity LOW.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] RDS payroll-postgres free storage space below 10 percent in account 940441274549", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: DNS data exfiltration pattern detected from i-cd3998d9b53511934.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "VPC peering connection routes allow full CIDR access between vpc-b55de71a and partner VPC", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: Instance i-6887a46dc39cd70f0 querying domain xmr.pool-miner.net associated with command and control Instance role ProdDeployRole attached. Severity HIGH.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: Password policy does not require a minimum length of 14 characters. Severity MEDIUM. Account 195857858392 region us-east-1.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "GuardDuty finding: CPUUtilization for i-1fb0dc3e84142b817 above 92 percent for 15 minutes. Severity HIGH.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (staging): S3 bucket acme-invoices is publicly readable through bucket ACL Bucket is attached to instance profile role ProdDeployRole. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (dev): Backdoor behavior: i-c882182b2c2bb07b2 is performing denial of service outbound Instance role BreakGlassAdmin attached. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: DynamoDB table Sessions point-in-time recovery is disabled Bucket is attached to instance profile role ReadOnlyAudit. Severity CRITICAL.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Incident report (dev): S3 bucket policy for backup-archive-01 does not deny non-TLS requests Found during network review. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: EC2 status check failed for instance i-eedc4ca8c6fd6e411. Severity LOW. Account 340306861427 region us-west-2.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: RDS snapshot for orders-db is not encrypted at rest Bucket is attached to instance profile role BreakGlassAdmin.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "EBS snapshot snap-6fa8791d9331e1e20 is shared publicly", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Route table rtb-83314d07 sends 0.0.0.0/0 to an internet gateway from a private subnet", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: VPC peering connection routes allow full CIDR access between vpc-71e1681e and partner VPC.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: RDS snapshot for crm-mysql is not encrypted at rest Bucket is attached to instance profile role BreakGlassAdmin. Severity MEDIUM.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "[ALARM] Unused credentials for a.garcia older than 45 days remain active in account 184751216473", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Target group tg-api-8080 has 206 unhealthy hosts", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] VPC vpc-d11bad99 flow logs are not enabled Instance i-6f9db55ece2623d46 also shows high CPU in account 706411671293", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: ECS service notifier running task count below desired count.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (prod): Unusual AssumeRole activity for role DataPipelineRole from a new ASN Activity touched S3 bucket acme-invoices. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (staging): Subnet auto-assigns public IPv4 addresses in VPC vpc-323a7678 Instance i-ea3f2e36a8c9ca553 also shows high CPU. Reported by on-call engineer.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "[ALARM] Console login failures exceeded threshold for user etl-user in account 991072104617", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (dev): Auto Scaling group worker-asg failed to launch instances: insufficient capacity. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: EBS snapshot snap-e45a4b50baa1470c1 is shared publicly.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Port scan from 81.140.31.11 against i-635138c543c16bebb detected", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Trojan activity: instance i-d6ddc80ac7f61ea97 contacted known malicious IP 205.83.95.126. Severity CRITICAL.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (staging): Password policy does not require a minimum length of 14 characters Activity touched S3 bucket acme-invoices. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] RDS orders-db free storage space below 10 percent in account 419482261146", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: EC2 instance i-727f9cf2593664a09 has a public IP and open RDP port 3389.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Load balancer api-nlb listener accepts HTTP without redirect to HTTPS. Severity HIGH. Account 532081207885 region us-west-2.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Access key AKIAUQ2FPRVRUFEHLQRN for user svc-backup has not been rotated in 400 days", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (dev): Unusual AssumeRole activity for role ProdDeployRole from a new ASN. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "EC2 instance i-1956d95905c1fc525 is communicating with a known cryptocurrency mining pool", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "ECS service notifier running task count below desired count", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (prod): RDS snapshot for crm-mysql is not encrypted at rest Found during network review. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "IAM user deploy-bot has console access without MFA enabled", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "GuardDuty finding: Disk usage on i-b200c084576f3111d root volume above 97 percent Host runs the IAM token service. Severity CRITICAL.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (dev): ECS service checkout-svc running task count below desired count. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "GuardDuty finding: KMS key alias/backup automatic rotation is disabled. Severity HIGH.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "[ALARM] Unusual AssumeRole activity for role ProdDeployRole from a new ASN in account 446312931767", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Trojan activity: instance i-0b3609996b6472398 contacted known malicious IP 39.143.191.125.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (dev): ECS service search-api running task count below desired count Instance sits behind security group sg-c12776d6. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (prod): Network ACL acl-b485fe15 permits inbound SSH from any address. Reported by on-call engineer.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Macie detected sensitive data (credit card numbers) in bucket hr-exports-prod. Severity CRITICAL. Account 775977597523 region us-west-2.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Malware detected on EBS volume attached to i-431b7b0299579a20b Instance security group sg-143db5f3 allows port 443.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (staging): Macie detected sensitive data (credit card numbers) in bucket backup-archive-01 Found during network review. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: Memory utilization on i-d6e211f22de6ab4cc above 91 percent. Severity MEDIUM.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: DynamoDB table Orders point-in-time recovery is disabled. Severity LOW. Account 134447635663 region us-west-2.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "VPC vpc-80ab52e9 flow logs are not enabled", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Incident report (dev): Console login failures exceeded threshold for user svc-backup. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "GuardDuty finding: Brute force SSH attempts against i-6247dd81228e86fb8 from 241.214.254.20. Severity MEDIUM.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "S3 bucket static-web-assets is publicly readable through bucket ACL", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "[ALARM] Reverse shell pattern detected on i-c8f84e3859e420d9b connecting to 251.94.52.75 Instance security group sg-bacafb0f allows port 443 in account 164545374816", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Reverse shell pattern detected on i-f235eaab4a1034880 connecting to 147.97.58.61", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Password policy does not require a minimum length of 14 characters", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Security Hub finding: Instance i-cf092f5a8b9737bcd querying domain update-check.cc associated with command and control. Severity CRITICAL. Account 822480976403 region us-west-2.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Lambda function auth-callback throttles exceeded threshold Data volume encrypted with KMS.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "GuardDuty finding: S3 bucket policy for hr-exports-prod does not deny non-TLS requests. Severity HIGH.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "[ALARM] Lambda function order-processor error rate exceeded 5 percent in account 536089637529", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (staging): Lambda function order-processor error rate exceeded 5 percent. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: Access key AKIADDT6JCKTSCWZEITC for user jsmith has not been rotated in 120 days. Severity MEDIUM. Account 452473909003 region us-east-1.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] Memory utilization on i-a680d6c43ff0e57bc above 97 percent Data volume encrypted with KMS in account 455452219616", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] Brute force SSH attempts against i-bbed9f402b02674db from 196.114.110.159 Instance security group sg-92915404 allows port 443 in account 955715288969", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Unusual AssumeRole activity for role DataPipelineRole from a new ASN", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Backdoor behavior: i-898d65644b7dc9ac5 is performing denial of service outbound.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: Security group sg-a34a7144 allows ingress from ::/0 on all ports Group owned by IAM team. Severity CRITICAL. Account 141914091080 region us-west-2.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: IAM user mbrown has inline policy attached directly instead of through a group.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] Security group sg-33d999f7 allows ingress from ::/0 on all ports Instance i-92bd19a81fb58b8bc also shows high CPU in account 848123548648", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: VPC peering connection routes allow full CIDR access between vpc-3ba11ff2 and partner VPC.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: Access key AKIAYG6TBSDDMGVTKGHQ for user svc-backup has not been rotated in 180 days. Severity MEDIUM.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (dev): Brute force SSH attempts against i-5e469c3bf7981172d from 209.235.64.27. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "EC2 status check failed for instance i-5297067a437d921bc Data volume encrypted with KMS", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (prod): Port scan from 101.108.150.209 against i-68823cb284a258773 detected. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: VPC peering connection routes allow full CIDR access between vpc-3983cc80 and partner VPC. Severity LOW. Account 939883325590 region eu-west-1.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Security Hub finding: Memory utilization on i-62a3eb795f3c4ba6f above 95 percent. Severity LOW. Account 430517174629 region us-west-2.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (dev): DNS data exfiltration pattern detected from i-36d7a3650a531cfff. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (prod): Network ACL acl-619a98ec permits inbound SSH from any address. Reported by on-call engineer.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Incident report (staging): Disk usage on i-9df0ee2acaa2f8488 root volume above 98 percent Data volume encrypted with KMS. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] Security group sg-eb5bc225 allows unrestricted ingress on port 3389 from 0.0.0.0/0 in account 463840702878", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Incident report (prod): EBS snapshot snap-aec8269161ee985f4 is shared publicly. Reported by on-call engineer.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: EBS snapshot snap-f3a4918c9834c72f4 is shared publicly.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: VPC vpc-d4bef466 flow logs are not enabled. Severity MEDIUM. Account 183237687524 region us-east-1.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: Trojan activity: instance i-2a1c9f56ee3a4cb07 contacted known malicious IP 112.75.188.62. Severity HIGH.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: VPC peering connection routes allow full CIDR access between vpc-23e01110 and partner VPC.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Console login failures exceeded threshold for user deploy-bot Activity touched S3 bucket clickstream-raw.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Password policy does not require a minimum length of 14 characters.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Default security group of VPC vpc-de09ec3f allows inbound and outbound traffic.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "GuardDuty finding: Route table rtb-1c97dbce sends 0.0.0.0/0 to an internet gateway from a private subnet. Severity CRITICAL.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "[ALARM] EC2 instance i-4d0108e8e286733e5 has a public IP and open RDP port 3389 in account 991266395638", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: EBS snapshot snap-63ad4edacecc8cf97 is shared publicly.", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: RDS payroll-postgres free storage space below 10 percent Host runs the IAM token service. Severity CRITICAL.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Console login failures exceeded threshold for user etl-user", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (dev): Credentials for mbrown used from anomalous geolocation Brazil. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "GuardDuty finding: Password policy does not require a minimum length of 14 characters Activity touched S3 bucket acme-invoices. Severity LOW.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "EBS snapshot snap-388c33d29c087f5b8 is shared publicly", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "Security Hub finding: Malware detected on EBS volume attached to i-0641cbf8c80af836b Instance security group sg-7643f0f7 allows port 443. Severity CRITICAL. Account 103185619278 region us-east-1.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "[ALARM] Trojan activity: instance i-8978221682fe807cd contacted known malicious IP 146.101.47.113 in account 517099208157", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Lambda function etl-loader error rate exceeded 5 percent.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] EC2 status check failed for instance i-a3c0cc851ce594e45 in account 151118799662", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "[ALARM] Port scan from 72.151.134.218 against i-7b0b5e94baa393fcc detected in account 667423375480", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: CPUUtilization for i-d91da14c69d451f4a above 95 percent for 15 minutes. Severity CRITICAL. Account 998236298880 region us-east-1.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "CPUUtilization for i-679f462f9569a49fd above 92 percent for 15 minutes", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Password policy does not require a minimum length of 14 characters.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] Root account used to call CreateAccessKey from 164.41.154.182 in account 151763481011", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Incident report (staging): IAM policy VendorAccess grants full administrative privileges *:*. Reported by on-call engineer.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Security Hub finding: Lambda function auth-callback throttles exceeded threshold Host runs the IAM token service. Severity LOW. Account 340723867691 region us-west-2.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "GuardDuty finding: IAM user jsmith has inline policy attached directly instead of through a group Activity touched S3 bucket clickstream-raw. Severity CRITICAL.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "[ALARM] Macie detected sensitive data (credit card numbers) in bucket clickstream-raw in account 782291860501", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "GuardDuty finding: ECS service notifier running task count below desired count. Severity LOW.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Incident report (dev): Backdoor behavior: i-827c25af15e6783b1 is performing denial of service outbound. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Incident report (staging): EC2 instance i-88a9c26bd83cef87d is communicating with a known cryptocurrency mining pool. Reported by on-call engineer.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "[ALARM] KMS key alias/app-data automatic rotation is disabled Bucket is attached to instance profile role DataPipelineRole in account 729773200438", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "EC2 instance i-1064a159bbcb24bc7 is communicating with a known cryptocurrency mining pool", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "Security Hub finding: Brute force SSH attempts against i-2b7407f1be18b1e64 from 36.99.144.58. Severity HIGH. Account 930163368476 region us-east-1.", "label": "THREAT_DETECTION", "source": "set_a"}
+{"text": "[ALARM] VPC peering connection routes allow full CIDR access between vpc-e024acad and partner VPC Group owned by IAM team in account 363864156015", "label": "NETWORK_EXPOSURE", "source": "set_a"}
+{"text": "Incident report (dev): Disk usage on i-d928c22d66556d26e root volume above 92 percent Data volume encrypted with KMS. Reported by on-call engineer.", "label": "COMPUTE_AVAILABILITY", "source": "set_a"}
+{"text": "Security Hub finding: Password policy does not require a minimum length of 14 characters Call originated inside VPC vpc-b0dfa26e. Severity MEDIUM. Account 726914580070 region us-west-2.", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "Macie detected sensitive data (credit card numbers) in bucket clickstream-raw", "label": "DATA_PROTECTION", "source": "set_a"}
+{"text": "IAM user jsmith has console access without MFA enabled", "label": "IDENTITY_ACCESS", "source": "set_a"}
+{"text": "AWS Config rule NON_COMPLIANT: Default security group of VPC vpc-e5d964c7 allows inbound and outbound traffic.", "label": "NETWORK_EXPOSURE", "source": "set_a"}
